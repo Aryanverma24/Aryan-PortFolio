@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+/* Geometrical Portfolio Design System */
+
+@layer base {
+  :root {
+    /* Base geometric color palette */
+    --background: 220 26% 6%;
+    --foreground: 0 0% 98%;
+
+    --card: 220 20% 10%;
+    --card-foreground: 0 0% 95%;
+
+    --popover: 220 20% 10%;
+    --popover-foreground: 0 0% 95%;
+
+    /* Primary: Electric blue */
+    --primary: 217 91% 60%;
+    --primary-foreground: 220 26% 6%;
+    --primary-glow: 217 91% 70%;
+
+    /* Secondary: Deep navy */
+    --secondary: 220 25% 15%;
+    --secondary-foreground: 0 0% 90%;
+
+    --muted: 220 20% 12%;
+    --muted-foreground: 220 10% 60%;
+
+    /* Accent: Vibrant cyan */
+    --accent: 189 95% 65%;
+    --accent-foreground: 220 26% 6%;
+    --accent-glow: 189 95% 75%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 217 91% 60%;
+
+    /* Geometric design tokens */
+    --gradient-primary: linear-gradient(135deg, hsl(var(--primary)), hsl(var(--accent)));
+    --gradient-dark: linear-gradient(135deg, hsl(var(--background)), hsl(var(--secondary)));
+    --gradient-glow: linear-gradient(135deg, hsl(var(--primary-glow) / 0.3), hsl(var(--accent-glow) / 0.3));
+    
+    --shadow-geometric: 0 8px 32px hsl(var(--primary) / 0.2);
+    --shadow-glow: 0 0 40px hsl(var(--primary-glow) / 0.4);
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-bounce: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Light mode override (keeping dark as default for geometric theme) */
+  .light {
+    --background: 0 0% 98%;
+    --foreground: 220 26% 15%;
+    --card: 0 0% 100%;
+    --card-foreground: 220 26% 15%;
+    --border: 220 15% 85%;
+    --muted: 220 15% 92%;
+    --muted-foreground: 220 10% 40%;
+  }
+}
+
+/* Map CSS variables to Tailwind v4 color tokens */
+@theme {
+  --color-background: hsl(var(--background));
+  --color-foreground: hsl(var(--foreground));
+
+  --color-card: hsl(var(--card));
+  --color-card-foreground: hsl(var(--card-foreground));
+
+  --color-popover: hsl(var(--popover));
+  --color-popover-foreground: hsl(var(--popover-foreground));
+
+  --color-primary: hsl(var(--primary));
+  --color-primary-foreground: hsl(var(--primary-foreground));
+
+  --color-secondary: hsl(var(--secondary));
+  --color-secondary-foreground: hsl(var(--secondary-foreground));
+
+  --color-muted: hsl(var(--muted));
+  --color-muted-foreground: hsl(var(--muted-foreground));
+
+  --color-accent: hsl(var(--accent));
+  --color-accent-foreground: hsl(var(--accent-foreground));
+
+  --color-destructive: hsl(var(--destructive));
+  --color-destructive-foreground: hsl(var(--destructive-foreground));
+
+  --color-border: hsl(var(--border));
+  --color-input: hsl(var(--input));
+  --color-ring: hsl(var(--ring));
+
+  --color-sidebar-background: hsl(var(--sidebar-background));
+  --color-sidebar-foreground: hsl(var(--sidebar-foreground));
+  --color-sidebar-primary: hsl(var(--sidebar-primary));
+  --color-sidebar-primary-foreground: hsl(var(--sidebar-primary-foreground));
+  --color-sidebar-accent: hsl(var(--sidebar-accent));
+  --color-sidebar-accent-foreground: hsl(var(--sidebar-accent-foreground));
+  --color-sidebar-border: hsl(var(--sidebar-border));
+  --color-sidebar-ring: hsl(var(--sidebar-ring));
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Geometric utility classes */
+@layer utilities {
+  .clip-polygon-hero {
+    clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+  }
+
+  .clip-polygon-section {
+    clip-path: polygon(0 15%, 100% 0, 100% 100%, 0 85%);
+  }
+
+  .geometric-border {
+    position: relative;
+  }
+
+  .geometric-border::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    background: var(--gradient-primary);
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
+
+  .text-gradient {
+    background: var(--gradient-primary);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  .glow-effect {
+    box-shadow: var(--shadow-glow);
+  }
+
+  .hexagon {
+    width: 100px;
+    height: 87px;
+    position: relative;
+    margin: 44px 0;
+  }
+
+  .hexagon::before,
+  .hexagon::after {
+    content: "";
+    position: absolute;
+    width: 0;
+    border-left: 50px solid transparent;
+    border-right: 50px solid transparent;
+  }
+
+  .hexagon::before {
+    bottom: 100%;
+    border-bottom: 29px solid hsl(var(--primary));
+  }
+
+  .hexagon::after {
+    top: 100%;
+    border-top: 29px solid hsl(var(--primary));
+  }
+
+  .hexagon-inner {
+    background: hsl(var(--primary));
+    width: 100px;
+    height: 58px;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+}
